@@ -1,46 +1,58 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {addAll} from "./redux/triviaSlice";
+import {addAll, getColor, selectedAnswer} from "./redux/triviaSlice";
 
-function Game() {
+
+export default function Game() {
 
     const dispatch = useDispatch()
 
-    const trivia = useSelector(state=>state.trivia)
+    const trivia = useSelector(state => state.trivia)
 
     useEffect(() => {
-        axios("https://opentdb.com/api.php?amount=5")
-            .then(res => {
-                dispatch(addAll(res.data.results))
-            })
-
+        axios("https://opentdb.com/api.php?amount=5").then(res => dispatch(addAll(res.data.results)))
     }, [])
 
-    const allQuestions = trivia.map( questionElement => {
+    const handleClick = (possibleAnswer) => {
+        dispatch(selectedAnswer(possibleAnswer));
+        // setColor(possibleAnswer)
+    }
+
+
+
+
+
+    const allQuestions = trivia.map((questionElement)=> {
 
         return (
 
             <div>
 
-                <h2>{ questionElement.question.text } </h2>
+                <h2 key={questionElement.id}>{questionElement.question.text}</h2>
 
-                <ul>
-                    { questionElement.possibleAnswers.map(answer=>{
+                <div>
+                    {questionElement.possibleAnswers.map((possibleAnswer) => {
                         return (
-                        <li>
-                            {answer.text}
-                        </li>
+
+                            <button key={possibleAnswer.id} style = {{ backgroundColor : possibleAnswer.color }}
+                                    onClick={() => handleClick(possibleAnswer)}
+
+                            >{possibleAnswer.text}</button>
+
                         )
                     })}
 
-                </ul>
+                </div>
 
             </div>
-    )
+        )
     })
 
-
+    // const [colors,setColor=(possibleAnswer)=> colors.push(possibleAnswer.color)] = useState( [trivia.map(i=>i.possibleAnswers.map(j=> {j.id,j.color}))])
+    // function getColorByID(id) {
+    //     return colors.find(id)
+    // }
     return (
 
 
@@ -52,4 +64,5 @@ function Game() {
     )
 }
 
-export default Game;
+
+

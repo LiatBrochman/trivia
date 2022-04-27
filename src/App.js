@@ -1,11 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import {
-    BrowserRouter as Router,
-    Routes as Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React, {Fragment} from 'react';
 
 import About from "./About";
@@ -23,7 +19,7 @@ function Home() {
 function App() {
     return (
 
-        <Router>
+        <BrowserRouter>
             <Fragment>
                 <nav>
                     <ul>
@@ -41,16 +37,16 @@ function App() {
 
                 {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-                <Switch>
+                <Routes>
                     <Route path="/" element={<Home/>}/>
 
                     <Route path="/about" element={<About/>}/>
 
                     <Route path="/game" element={<Game/>}/>
 
-                </Switch>
+                </Routes>
             </Fragment>
-        </Router>
+        </BrowserRouter>
     );
 }
 
