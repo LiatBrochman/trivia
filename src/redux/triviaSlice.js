@@ -90,49 +90,39 @@ export const triviaSlice = createSlice({
                     color: "white"
                 }));
                 state[i].possibleAnswers = answers;
-
             }
+
         },
-        selectedAnswer: (state, action) => {
+        selectAnswer: (state, action) => {
 
-            state.map((questionElement) => {
-                questionElement.possibleAnswers.map(possibleAnswer => {
-                    if (possibleAnswer.id === action.payload) {
-                        // if()
-                        possibleAnswer.color = "blue"
-                        // possibleAnswer.isSelected = true
+            console.log(action.payload.getParent())
 
-                    }
+            action.payload.color === "white" && (
+                // action.payload.getParent().find(answer => )
 
+                state.map((questionElement) => {
+                    questionElement.possibleAnswers.map(possibleAnswer => {
+
+
+                        // (possibleAnswer.id === action.payload ? possibleAnswer.color = "blue" : possibleAnswer.color = "white");
+
+                    })
                 })
-            })
-            // action.payload.color="blue"
 
-
-            // const id = state.find((question) => question.id === action.payload.id);
-            // state[id].isSelected = action.payload.isSelected;
-            //  state.map((answer) => {
-            //     if (answer.id === action.payload.id) {
-            //         return {
-            //             ...answer,
-            //             isSelected: true,
-            //         };
-            //     }
-            //     return answer;
-            // });
+            )
 
 
         },
-        getColor:(state,action)=>{
-            console.log(":::",state.map(i=>i.possibleAnswers.find(action.payload)))
+        getColor: (state, action) => {
+            console.log(":::", state.map(i => i.possibleAnswers.find(action.payload)))
 
-            const x= state.map(i=>i.possibleAnswers.find(j=>action.payload===j.id))
+            const x = state.map(i => i.possibleAnswers.find(j => action.payload === j.id))
             return x.color
         }
     }
 
 })
 
-export const {addAll, selectedAnswer,getColor} = triviaSlice.actions
+export const {addAll, selectAnswer, getColor} = triviaSlice.actions
 
 export default triviaSlice.reducer
