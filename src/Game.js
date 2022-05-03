@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {addAll, selectAnswer} from "./redux/triviaSlice";
+import {addAll} from "./redux/triviaSlice";
 
 
 export default function Game() {
@@ -29,7 +29,8 @@ export default function Game() {
 
                             return (
 
-                                <button key={index} onClick={() => dispatch(selectAnswer(possibleAnswer))}
+                                <button key={index}
+
                                         style={{backgroundColor: possibleAnswer.color}}>
 
                                     {possibleAnswer.text}
@@ -51,13 +52,25 @@ export default function Game() {
             .then(res => dispatch(addAll(res.data.results)))
     }, [])
 
-    useEffect(()=>{
+    // function renderColor() {
+    //     return undefined;
+    // }
 
-        renderAllQuestions()
+    useEffect(() => {
 
-    // },[!!trivia])
+        // !!trivia && trivia instanceof Array && trivia[0] && trivia[0].possibleAnswers && trivia[0].possibleAnswers.length > 0
+        //     ?
+            renderAllQuestions()
+            // :
+            // renderColor()
+        // console.log(require('./redux/store').store.getState().trivia)
 
-    },[!!trivia && trivia instanceof Array && trivia[0] && trivia[0].possibleAnswers && trivia[0].possibleAnswers.length > 0 ])
+    // },[trivia])
+    }, [!!trivia && trivia instanceof Array && trivia[0] && trivia[0].possibleAnswers && trivia[0].possibleAnswers.length > 0 , allQuestions])
+    // }, [allQuestions])
+
+
+
 
     return (
 
