@@ -2,7 +2,6 @@ import {createSlice} from '@reduxjs/toolkit'
 import {nanoid} from 'nanoid'
 
 
-
 const initialState = [
     {
         question: {},
@@ -73,19 +72,21 @@ export const triviaSlice = createSlice({
     reducers: {
         addAll: (state, action) => {
 
-            console.log("state", state)
             const amountOfQuestions = action.payload.length;
 
             for (let i = 0; i < amountOfQuestions; i++) {
+                console.log("state[i]", state[i])
+
                 state[i].question.text = action.payload[i].question;
                 state[i].question.id = nanoid();
+
                 const answers = [{
-                    text: action.payload[i]['correct_answer'],
+                    text: action.payload[i].correct_answer,
                     id: nanoid(),
                     isSelected: false,
                     color: "white"
                 }];
-                action.payload[i]['incorrect_answers'].map(answerText => answers.push({
+                action.payload[i].incorrect_answers.map(answerText => answers.push({
                     text: answerText,
                     id: nanoid(),
                     isSelected: false,
@@ -93,26 +94,36 @@ export const triviaSlice = createSlice({
                 }));
                 state[i].possibleAnswers = answers;
             }
-        }
+        },
 
 
-        // selectAnswer: (state, action) => {
-        //         action.payload.color === "white" && (
-        //
-        //            state.map(i => i.possibleAnswers.includes(action.payload) && (
-        //
-        //                     i.possibleAnswers.map(possibleAnswer => (possibleAnswer.id === action.payload.id ? possibleAnswer.color = "blue" : possibleAnswer.color = "white"))
-        //
-        //                 )
-        //             )
-        //         );
-        //
-        //
-        //     },
-        // }
+        selectAnswer: (state, action) => {
 
-    }})
+            console.log("trying to click")
 
-export const {addAll} = triviaSlice.actions
+            if (action.payload.isSelected === false) {
+
+                let row = state.find(i => {
+                    console.log("possibleAnswers:",i.possibleAnswers)
+                   return (i.possibleAnswers.includes(action.payload)) && i
+                })
+
+                console.log("row:",row)
+
+                row.possibleAnswers.map(i => i.isSelected = false)
+                row.possibleAnswers.find(action.payload).isSelected = true
+
+                // state = [
+                //     ...state,
+                //     row]
+                state.push(row)
+            }
+
+        },
+    }
+
+})
+
+export const {addAll, selectAnswer} = triviaSlice.actions
 
 export default triviaSlice.reducer

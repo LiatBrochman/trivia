@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {addAll} from "./redux/triviaSlice";
+import {addAll, selectAnswer} from "./redux/triviaSlice";
 
 
 export default function Game() {
@@ -30,8 +30,8 @@ export default function Game() {
                             return (
 
                                 <button key={index}
-
-                                        style={{backgroundColor: possibleAnswer.color}}>
+                                        onClick={()=>dispatch(selectAnswer(possibleAnswer))}
+                                       className = {possibleAnswer.isSelected ? 'answersSelected' : 'answer'}>
 
                                     {possibleAnswer.text}
 
@@ -66,7 +66,8 @@ export default function Game() {
         // console.log(require('./redux/store').store.getState().trivia)
 
     // },[trivia])
-    }, [!!trivia && trivia instanceof Array && trivia[0] && trivia[0].possibleAnswers && trivia[0].possibleAnswers.length > 0 , allQuestions])
+    },
+        [!!trivia && trivia instanceof Array && trivia[0] && trivia[0].possibleAnswers && trivia[0].possibleAnswers.length > 0 && allQuestions])
     // }, [allQuestions])
 
 
