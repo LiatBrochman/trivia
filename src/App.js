@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import {Link} from "react-router-dom";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import React, {Fragment} from 'react';
 
 import About from "./About";
