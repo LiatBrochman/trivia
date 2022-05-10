@@ -3,6 +3,7 @@ import {nanoid} from 'nanoid'
 import axios from "axios";
 import React from "react";
 import _ from "lodash";
+import '../Game.css';
 
 export const addAll_Thunk = createAsyncThunk(
     'trivia/addAll_Thunk', async () => {
@@ -164,7 +165,7 @@ export const renderApp = (state,dispatch) => state.map((questionElement, rowInde
 
 
                                 }
-                                className={possibleAnswer.isSelected ? 'answersSelected' : 'answer'}>
+                                className={possibleAnswer.isSelected ? 'answerSelected' : 'answer'}>
 
                             {possibleAnswer.text}
 
