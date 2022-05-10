@@ -74,35 +74,27 @@ const initialState = [
         ]
     }
 ]
+const shuffle=(array)=> {
+    let currentIndex = array.length,  randomIndex;
 
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
 export const triviaSlice = createSlice({
     name: 'trivia',
     initialState,
     reducers: {
-        addAll: (state, action) => {
-
-            const amountOfQuestions = action.payload.length;
-
-            for (let i = 0; i < amountOfQuestions; i++) {
-                state[i].question.text = action.payload[i].question;
-                state[i].question.id = nanoid();
-                const answers = [{
-                    text: action.payload[i]['correct_answer'],
-                    id: nanoid(),
-                    isSelected: false,
-                    color: "white"
-                }];
-                action.payload[i]['incorrect_answers'].map(j => answers.push({
-                    text: j,
-                    id: nanoid(),
-                    isSelected: false,
-                    color: "white"
-                }));
-                state[i].possibleAnswers = answers;
-            }
-
-        },
-        shuffle: (state, action) => {},
         updateTrivia: (state, action) => {
             state[action.payload.rowIndex] = action.payload.newRow
         },
@@ -116,16 +108,20 @@ export const triviaSlice = createSlice({
             for (let i = 0; i < amountOfQuestions; i++) {
                 state[i].question.text = action.payload[i].question;
                 state[i].question.id = nanoid();
-                const answers = [{
+                let answers = [{
                     text: action.payload[i]['correct_answer'],
                     id: nanoid(),
-                    isSelected: false
+                    isSelected: false,
+                    isCorrect:true
                 }];
                 action.payload[i]['incorrect_answers'].map(j => answers.push({
                     text: j,
                     id: nanoid(),
-                    isSelected: false
+                    isSelected: false,
+                    isCorrect:false
                 }));
+
+                answers = shuffle(answers);
                 state[i].possibleAnswers = answers;
             }
         },
