@@ -1,23 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {submit, updateTrivia} from "./redux/triviaSlice";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+import {submit} from "./redux/triviaSlice";
+import {increment,hideSubmit} from "./redux/gradeSlice";
 import _ from "lodash";
-import {increment} from "./redux/gradeSlice";
 
 export default function Submit(trivia) {
     const grade = useSelector(state => state.grade.value)
-    const dispatch = useDispatch();
-    const [isDisabled, setIsDisabled] = useState(false);
-
+    const isHidden = useSelector(state => state.grade.isHidden)
+    const dispatch = useDispatch()
     let triviaClone = _.cloneDeep(trivia)
 
+    const [isDisabled,setIsDisabled]=useState(true)
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        if(trivia instanceof Array){
+
+            // checks if there is "some" answer selected on any row, if so, returns true.
+            // if all the rows contains at least 1 selected answer, we enable it by setting the isDisabled to false.
+            setIsDisabled(!trivia.every(questionElement=>!!questionElement.possibleAnswers.some( possibleAnswer=>possibleAnswer.isSelected===true)))
+        }
+    },[trivia]);
 
     return (
         <div>
 
             <button
                 disabled={isDisabled}
+                hidden={isHidden}
                 onClick={() => {
 
                     triviaClone instanceof Array && triviaClone.map((questionElement, index) => {
@@ -57,13 +67,13 @@ export default function Submit(trivia) {
 
                     })
                     console.log(triviaClone)
-                    setIsDisabled(true)
+                    dispatch(hideSubmit())
                     dispatch(submit(triviaClone))
                 }}
 
             >Submit
             </button>
-            <span>{isDisabled && grade}</span>
+            <span>{isHidden && grade}</span>
         </div>
 
     )

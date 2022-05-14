@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {updateTrivia} from "./redux/triviaSlice";
 import _ from "lodash";
@@ -9,7 +9,9 @@ export default function Game() {
 
     const trivia = useSelector(state => state.trivia);
     const dispatch = useDispatch();
-     const renderApp = (state) => state.map((questionElement, rowIndex) => {
+    const [enableSubmit,setEnableSubmit]=useState(false)
+
+    const renderApp = (state) => state.map((questionElement, rowIndex) => {
 
         return (
 
@@ -52,7 +54,6 @@ export default function Game() {
                                         })
 
                                         dispatch(updateTrivia({newRow: clonedRow,rowIndex}))
-
                                     }
 
 
