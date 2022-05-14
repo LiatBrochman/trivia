@@ -1,4 +1,4 @@
-import {combineReducers, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {nanoid} from 'nanoid'
 import axios from "axios";
 import React from "react";

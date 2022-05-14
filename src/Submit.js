@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {submit} from "./redux/triviaSlice";
-import {increment,hideSubmit} from "./redux/gradeSlice";
+import {hideSubmit, increment} from "./redux/gradeSlice";
 import _ from "lodash";
 
 export default function Submit(trivia) {
@@ -13,7 +13,6 @@ export default function Submit(trivia) {
     const [isDisabled,setIsDisabled]=useState(true)
 
     useEffect(() => {
-        // Update the document title using the browser API
         if(trivia instanceof Array){
 
             // checks if there is "some" answer selected on any row, if so, returns true.
