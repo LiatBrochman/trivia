@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {submit, updateTrivia} from "./redux/triviaSlice";
-import {isDisabled} from "@testing-library/user-event/dist/utils";
+import {submit} from "./redux/triviaSlice";
 import _ from "lodash";
 import {increment} from "./redux/gradeSlice";
 

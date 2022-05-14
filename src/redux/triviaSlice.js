@@ -1,9 +1,8 @@
-import {combineReducers, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {nanoid} from 'nanoid'
 import axios from "axios";
 import React from "react";
 import '../Game.css';
-import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 export const addAll_Thunk = createAsyncThunk(
     'trivia/addAll_Thunk', async () => {
