@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {updateTrivia} from "./redux/triviaSlice";
+import {updateTriviaRow} from "./redux/triviaSlice";
 import _ from "lodash";
 import Submit from "./Submit"
 
@@ -9,7 +9,6 @@ export default function Game() {
 
     const trivia = useSelector(state => state.trivia);
     const dispatch = useDispatch();
-    const [enableSubmit,setEnableSubmit]=useState(false)
 
     const renderApp = (state) => state.map((questionElement, rowIndex) => {
 
@@ -26,7 +25,7 @@ export default function Game() {
                         return (
 
                             <button key={index}
-                                   disabled={possibleAnswer.isDisabled}
+                                    disabled={possibleAnswer.isDisabled}
                                     onClick={() => {
                                         if (possibleAnswer.isSelected === true) return;
 
@@ -36,35 +35,25 @@ export default function Game() {
                                         clonedRow.possibleAnswers.forEach(clonedAnswer => {
 
 
-                                            switch (clonedAnswer.id === possibleAnswer.id){
+                                            switch (clonedAnswer.id === possibleAnswer.id) {
 
                                                 case true:
                                                     clonedAnswer.isSelected = true
-                                                    clonedAnswer.className="answerSelected"
+                                                    clonedAnswer.className = "answerSelected"
                                                     break;
 
 
                                                 default:
                                                     clonedAnswer.isSelected = false
-                                                    clonedAnswer.className="answer"
-                                                break;
+                                                    clonedAnswer.className = "answer"
+                                                    break;
 
                                             }
-
                                         })
 
-                                        dispatch(updateTrivia({newRow: clonedRow,rowIndex}))
-                                    }
-
-
-                                    }
-                                    // className={possibleAnswer.isSelected === true ? 'answerSelected' : 'answer'}
+                                        dispatch(updateTriviaRow({newRow: clonedRow, rowIndex}))
+                                    }}
                                     className={possibleAnswer.className}
-
-
-
-
-
                             >
 
                                 {possibleAnswer.text}
@@ -78,7 +67,7 @@ export default function Game() {
 
             </div>
         )
-    });
+    })
 
 
     return (<>

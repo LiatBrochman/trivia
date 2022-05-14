@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {submit} from "./redux/triviaSlice";
+import {triviaSubmit} from "./redux/triviaSlice";
 import {hideSubmit, increment} from "./redux/gradeSlice";
 import _ from "lodash";
 
@@ -10,14 +10,16 @@ export default function Submit(trivia) {
     const dispatch = useDispatch()
     let triviaClone = _.cloneDeep(trivia)
 
-    const [isDisabled,setIsDisabled]=useState(true)
+    const [isEnabled,setIsEnabled]=useState(true)
 
     useEffect(() => {
         if(trivia instanceof Array){
-
             // checks if there is "some" answer selected on any row, if so, returns true.
             // if all the rows contains at least 1 selected answer, we enable it by setting the isDisabled to false.
-            setIsDisabled(!trivia.every(questionElement=>!!questionElement.possibleAnswers.some( possibleAnswer=>possibleAnswer.isSelected===true)))
+            setIsEnabled(
+                trivia.every(questionElement=>
+                        !!questionElement.possibleAnswers.some(
+                            possibleAnswer=> possibleAnswer.isSelected===true)))
         }
     },[trivia]);
 
@@ -25,7 +27,7 @@ export default function Submit(trivia) {
         <div>
 
             <button
-                disabled={isDisabled}
+                disabled={!isEnabled}
                 hidden={isHidden}
                 onClick={() => {
 
@@ -49,7 +51,6 @@ export default function Submit(trivia) {
 
                                 case false + "|" + false:
                                     console.log("index:", index, "case:", [false, false],"??? Unknown answer");
-
                                     break;
 
                                 case false + "|" + true:
@@ -65,9 +66,8 @@ export default function Submit(trivia) {
                         })
 
                     })
-                    console.log(triviaClone)
                     dispatch(hideSubmit())
-                    dispatch(submit(triviaClone))
+                    dispatch(triviaSubmit(triviaClone))
                 }}
 
             >Submit

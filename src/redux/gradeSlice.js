@@ -3,7 +3,6 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     value: 0,
     isHidden: false,
-    isDisabled:true,
 }
 const gradeSlice = createSlice({
     name: 'grade',

@@ -92,11 +92,11 @@ const triviaSlice = createSlice({
     name: 'trivia',
     initialState,
     reducers: {
-        updateTrivia: (state, action) => {
+        updateTriviaRow: (state, action) => {
             state[action.payload.rowIndex] = action.payload.newRow
 
         },
-        submit: (state, action) => {
+        triviaSubmit: (state, action) => {
 
             action.payload.map((questionElement, index) => {
                 state[index] = questionElement
@@ -136,6 +136,6 @@ const triviaSlice = createSlice({
 })
 
 
-export const {updateTrivia, submit} = triviaSlice.actions
+export const {updateTriviaRow, triviaSubmit} = triviaSlice.actions
 
 export default triviaSlice.reducer
