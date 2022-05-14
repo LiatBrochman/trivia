@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {updateTrivia} from "./redux/triviaSlice";
 import _ from "lodash";
+import Submit from "./Submit"
 
 
 export default function Game() {
@@ -23,22 +24,47 @@ export default function Game() {
                         return (
 
                             <button key={index}
+                                   disabled={possibleAnswer.isDisabled}
                                     onClick={() => {
                                         if (possibleAnswer.isSelected === true) return;
 
 
-                                        let newRow = _.cloneDeep(questionElement)
+                                        let clonedRow = _.cloneDeep(questionElement)
 
-                                        newRow.possibleAnswers.forEach(answer => answer.id === possibleAnswer.id ? answer.isSelected = true : answer.isSelected = false)
+                                        clonedRow.possibleAnswers.forEach(clonedAnswer => {
 
 
-                                        dispatch(updateTrivia({newRow,rowIndex}))
+                                            switch (clonedAnswer.id === possibleAnswer.id){
+
+                                                case true:
+                                                    clonedAnswer.isSelected = true
+                                                    clonedAnswer.className="answerSelected"
+                                                    break;
+
+
+                                                default:
+                                                    clonedAnswer.isSelected = false
+                                                    clonedAnswer.className="answer"
+                                                break;
+
+                                            }
+
+                                        })
+
+                                        dispatch(updateTrivia({newRow: clonedRow,rowIndex}))
 
                                     }
 
 
                                     }
-                                    className={possibleAnswer.isSelected ? 'answerSelected' : 'answer'}>
+                                    // className={possibleAnswer.isSelected === true ? 'answerSelected' : 'answer'}
+                                    className={possibleAnswer.className}
+
+
+
+
+
+                            >
 
                                 {possibleAnswer.text}
 
@@ -56,6 +82,7 @@ export default function Game() {
 
     return (<>
         {renderApp(trivia)}
+        {Submit(trivia)}
     </>)
 }
 

@@ -1,11 +1,11 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {combineReducers, createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {nanoid} from 'nanoid'
 import axios from "axios";
 import React from "react";
 import '../Game.css';
+import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 export const addAll_Thunk = createAsyncThunk(
-
     'trivia/addAll_Thunk', async () => {
         return axios("https://opentdb.com/api.php?amount=5").then(res => res.data.results)
     })
@@ -69,11 +69,11 @@ const initialState = [
             // {id: "", key:"", text: "", isCorrect: false, color: "white", isSelected: false},
             // {id: "", key:"", text: "", isCorrect: false, color: "white", isSelected: false}
 
-        ]
+        ],
     }
 ]
-const shuffle=(array)=> {
-    let currentIndex = array.length,  randomIndex;
+const shuffle = (array) => {
+    let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
@@ -89,14 +89,19 @@ const shuffle=(array)=> {
 
     return array;
 }
-export const triviaSlice = createSlice({
+const triviaSlice = createSlice({
     name: 'trivia',
     initialState,
     reducers: {
         updateTrivia: (state, action) => {
             state[action.payload.rowIndex] = action.payload.newRow
         },
+        submit: (state, action) => {
 
+            action.payload.map((questionElement, index) => {
+                state[index] = questionElement
+            })
+        },
     },
     extraReducers: {
         [addAll_Thunk.fulfilled]: (state, action) => {
@@ -110,13 +115,17 @@ export const triviaSlice = createSlice({
                     text: action.payload[i]['correct_answer'],
                     id: nanoid(),
                     isSelected: false,
-                    isCorrect:true
+                    isCorrect: true,
+                    isDisabled: false,
+                    className: 'answer'
                 }];
                 action.payload[i]['incorrect_answers'].map(j => answers.push({
                     text: j,
                     id: nanoid(),
                     isSelected: false,
-                    isCorrect:false
+                    isCorrect: false,
+                    isDisabled: false,
+                    className: 'answer'
                 }));
 
                 answers = shuffle(answers);
@@ -126,6 +135,7 @@ export const triviaSlice = createSlice({
     }
 })
 
-export const {updateTrivia} = triviaSlice.actions
+
+export const {updateTrivia, submit} = triviaSlice.actions
 
 export default triviaSlice.reducer
