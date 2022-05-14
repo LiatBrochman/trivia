@@ -4,3 +4,13 @@
 .answer{
     background-color: white;
 }
+
+.answerCorrect{
+    background-color: green;
+}
+
+.answerIncorrect{
+     background-color: red;
+ }
+
+
