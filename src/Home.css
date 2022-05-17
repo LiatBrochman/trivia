@@ -1,0 +1,63 @@
+.home-title{
+    position: absolute;
+    width: 412px;
+    height: 41px;
+    left: 70px;
+    top: 218px;
+
+    font-family: 'Karla', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 37px;
+    text-align: center;
+
+    color: #293264;
+
+
+}
+
+.home-description{
+    position: absolute;
+    width: 318px;
+    height: 19px;
+    left: 117px;
+    top: 266px;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #293264;
+
+}
+
+.home-button{
+
+    position: absolute;
+    width: 193px;
+    height: 52px;
+    left: 179px;
+    top: 314px;
+
+    background: #4D5B9E;
+    border-radius: 15px;
+
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    color: #F5F7FB;
+
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}

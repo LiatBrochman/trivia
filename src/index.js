@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from './redux/store'
 import {Provider} from 'react-redux'
-import {addAll_Thunk} from "./redux/triviaSlice";
+import {initPage} from "./redux/triviaSlice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-store.dispatch(addAll_Thunk())
+store.dispatch(initPage())
 
 root.render(
 

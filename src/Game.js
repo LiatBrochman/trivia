@@ -3,20 +3,26 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateTriviaRow} from "./redux/triviaSlice";
 import _ from "lodash";
 import Submit from "./Submit"
+import { decode } from "html-entities";
+import {Link} from "react-router-dom";
 
 
 export default function Game() {
 
     const trivia = useSelector(state => state.trivia);
+
+
+
     const dispatch = useDispatch();
 
     const renderApp = (state) => state.map((questionElement, rowIndex) => {
+        let clonedRow = _.cloneDeep(questionElement)
 
         return (
 
             <div key={rowIndex}>
 
-                <h2>{questionElement.question.text}</h2>
+                <h2 className="game-title">{decode(questionElement.question.text)}</h2>
 
                 <div>
 
@@ -29,8 +35,6 @@ export default function Game() {
                                     onClick={() => {
                                         if (possibleAnswer.isSelected === true) return;
 
-
-                                        let clonedRow = _.cloneDeep(questionElement)
 
                                         clonedRow.possibleAnswers.forEach(clonedAnswer => {
 
@@ -56,7 +60,7 @@ export default function Game() {
                                     className={possibleAnswer.className}
                             >
 
-                                {possibleAnswer.text}
+                                {decode(possibleAnswer.text)}
 
                             </button>
 
@@ -73,6 +77,7 @@ export default function Game() {
     return (<>
         {renderApp(trivia)}
         {Submit(trivia)}
+        <Link to="/end">End quiz</Link>
     </>)
 }
 

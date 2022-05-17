@@ -1,16 +1,49 @@
 .answerSelected{
-    background-color: cornflowerblue;
+    background-color: #D6DBF5;
+    border-radius: 7.94239px;
+    color: #293264;
+    margin: 5px;
 }
 .answer{
-    background-color: white;
+    border: 0.794239px solid #4D5B9E;
+    border-radius: 7.94239px;
+    color: #293264;
+    margin: 5px;
+    background-color: inherit;
+
 }
 
 .answerCorrect{
-    background-color: green;
+    background-color: #94D7A2;
+    border-radius: 7.94239px;
+    color: #293264;
+    margin: 5px;
 }
 
 .answerIncorrect{
-     background-color: red;
+    background-color: #F8BCBC;
+    border-radius: 7.94239px;
+    color: #293264;
+    margin: 5px;
  }
 
+.answerDisabled{
+    border: 0.771045px solid #4D5B9E;
+    border-radius: 7.71045px;
+    color: #293264;
+    margin: 5px;
+}
+
+.game-title{
+     font-family: 'Karla', sans-serif;
+     font-style: normal;
+     font-weight: 700;
+     font-size: 16px;
+     line-height: 19px;
+     /* identical to box height */
+    margin: 5px;
+
+
+     color: #293264;
+ }
 

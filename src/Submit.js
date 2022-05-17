@@ -37,20 +37,20 @@ export default function Submit(trivia) {
                             switch (possibleAnswer.isSelected + "|" + possibleAnswer.isCorrect) {
 
                                 case true + "|" + true:
-                                    console.log("index:", index, "case:", [true, true]);
-                                    console.log("possibleAnswer.isSelected:", possibleAnswer.isSelected, '|', "possibleAnswer.isCorrect:", possibleAnswer.isCorrect)
+                                    //console.log("index:", index, "case:", [true, true]);
+                                   // console.log("possibleAnswer.isSelected:", possibleAnswer.isSelected, '|', "possibleAnswer.isCorrect:", possibleAnswer.isCorrect)
                                     possibleAnswer.className = "answerCorrect"
                                     dispatch(increment())
                                     break;
 
                                 case true + "|" + false:
-                                    console.log("index:", index, "case:", [true, false]);
-                                    console.log("possibleAnswer.isSelected:", possibleAnswer.isSelected, '|', "possibleAnswer.isCorrect:", possibleAnswer.isCorrect)
+                                   // console.log("index:", index, "case:", [true, false]);
+                                   // console.log("possibleAnswer.isSelected:", possibleAnswer.isSelected, '|', "possibleAnswer.isCorrect:", possibleAnswer.isCorrect)
                                     possibleAnswer.className = "answerIncorrect"
                                     break;
 
                                 case false + "|" + false:
-                                    console.log("index:", index, "case:", [false, false],"??? Unknown answer");
+                                    possibleAnswer.className = "answerDisabled"
                                     break;
 
                                 case false + "|" + true:
