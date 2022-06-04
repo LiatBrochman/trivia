@@ -77,7 +77,9 @@ export default function Game() {
     return (<>
         {renderApp(trivia)}
         {Submit(trivia)}
-        <Link to="/end">End quiz</Link>
+        <button>
+            <Link to="/end">End quiz</Link>
+        </button>
     </>)
 }
 
