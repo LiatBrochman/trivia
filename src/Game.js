@@ -1,23 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {updateTriviaRow} from "./redux/triviaSlice";
 import _ from "lodash";
 import Submit from "./Submit"
 import { decode } from "html-entities";
-import {Link} from "react-router-dom";
+import {nextPage,previousPage} from "./redux/pagesSlice";
+import {nextButton} from "./redux/gradeSlice";
+
 
 
 export default function Game() {
 
     const trivia = useSelector(state => state.trivia);
-
-
+    const pages = useSelector(state => state.pages.currentPage)
+    const submitButtons = useSelector(state => state.grade.submitButtons)
+     // const [currentPage, setCurrentPage] = useState(1);
+     const questionsPerPage = 5;
+    const indexOfLastQuestion = pages * questionsPerPage;
+    const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
+    const page = trivia.slice(indexOfFirstQuestion,indexOfLastQuestion);
+     console.log(page)
 
     const dispatch = useDispatch();
 
-    const renderApp = (state) => state.map((questionElement, rowIndex) => {
-        let clonedRow = _.cloneDeep(questionElement)
 
+    const renderApp = () => trivia.slice(indexOfFirstQuestion,indexOfLastQuestion).map((questionElement, rowIndex) => {
+        let clonedRow = _.cloneDeep(questionElement)
+console.log("trivia" + trivia)
         return (
 
             <div key={rowIndex}>
@@ -58,6 +67,7 @@ export default function Game() {
                                         dispatch(updateTriviaRow({newRow: clonedRow, rowIndex}))
                                     }}
                                     className={possibleAnswer.className}
+
                             >
 
                                 {decode(possibleAnswer.text)}
@@ -69,18 +79,20 @@ export default function Game() {
 
                 </div>
 
+                <hr className="hr-game" />
+
             </div>
         )
     })
 
 
-    return (<>
+    return (<div className="containerGame">
         {renderApp(trivia)}
         {Submit(trivia)}
-        <button>
-            <Link to="/end">End quiz</Link>
-        </button>
-    </>)
+        <button hidden={pages===5} onClick={()=>dispatch(nextPage())}>Next Page</button>
+        <button hidden={pages===1} onClick={()=>dispatch(previousPage())}>previous Page</button>
+
+    </div>)
 }
 
 

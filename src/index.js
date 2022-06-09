@@ -8,7 +8,7 @@ import {Provider} from 'react-redux'
 import {initPage} from "./redux/triviaSlice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-store.dispatch(initPage())
+ store.dispatch(initPage())
 
 root.render(
 
