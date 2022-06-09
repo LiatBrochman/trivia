@@ -5,15 +5,15 @@ import React from "react";
 import '../Game.css';
 
 
-export const initPage = createAsyncThunk('trivia/initPage', async (data={amountOfQuestions:25},{rejectWithValue}) => {
-        try {
-            return axios(`https://opentdb.com/api.php?amount=${data.amountOfQuestions}`).then(res => res.data.results)
+export const initPage = createAsyncThunk('trivia/initPage', async (data = {amountOfQuestions: 25}, {rejectWithValue}) => {
+    try {
+        return axios(`https://opentdb.com/api.php?amount=${data.amountOfQuestions}`).then(res => res.data.results)
 
-        }catch (e) {
-           console.error(e)
-            return rejectWithValue(0)
-        }
-    })
+    } catch (e) {
+        console.error(e)
+        return rejectWithValue(0)
+    }
+})
 const initialState = [
     // {
     //     page: 1,
@@ -47,16 +47,16 @@ const triviaSlice = createSlice({
     name: 'trivia',
     initialState,
     reducers: {
-        updateTriviaRow: (state, action) => {
-            state[action.payload.rowIndex] = action.payload.newRow
+        updateQuestionElement: (state, action) => {
+            state[action.payload.oldQuestionElement_Index] = action.payload.newQuestionElement
 
         },
         triviaSubmit: (state, action) => {
-            for (let i = 0; i < 5; i++) {
-            action.payload.map((questionElement, index) => {
+            const pageClone = action.payload;
+            pageClone.map((questionElement, index) => {
                 state[index] = questionElement
             })
-        }},
+        },
     },
     extraReducers: {
         // [getEachPage.fulfilled]:(state,action) => {
@@ -98,44 +98,42 @@ const triviaSlice = createSlice({
             const amountOfQuestions = action.payload.length
 
             for (let i = 0; i < amountOfQuestions; i++) {
-                        state[i] = {}
-                        //state[i].numberPage = j+1
-                        state[i].question = {}
-                        state[i].question.text = action.payload[i].question;
-                        state[i].question.id = nanoid();
-                        let answers = [{
-                            text: action.payload[i]['correct_answer'],
-                            id: nanoid(),
-                            isSelected: false,
-                            isCorrect: true,
-                            isDisabled: false,
-                            className: 'answer'
-                        }]
-                        action.payload[i]['incorrect_answers'].map(k => answers.push({
-                            text: k,
-                            id: nanoid(),
-                            isSelected: false,
-                            isCorrect: false,
-                            isDisabled: false,
-                            className: 'answer'
-                        }))
+                state[i] = {}
+                //state[i].numberPage = j+1
+                state[i].question = {}
+                state[i].question.text = action.payload[i].question;
+                state[i].question.id = nanoid();
+                let answers = [{
+                    text: action.payload[i]['correct_answer'],
+                    id: nanoid(),
+                    isSelected: false,
+                    isCorrect: true,
+                    isDisabled: false,
+                    className: 'answer'
+                }]
+                action.payload[i]['incorrect_answers'].map(k => answers.push({
+                    text: k,
+                    id: nanoid(),
+                    isSelected: false,
+                    isCorrect: false,
+                    isDisabled: false,
+                    className: 'answer'
+                }))
 
-                        answers = shuffle(answers)
+                answers = shuffle(answers)
 
-                        state[i].possibleAnswers = []
+                state[i].possibleAnswers = []
 
-                        answers.every(ans => state[i].possibleAnswers.push(ans))
-                    }
-                }
-
+                answers.every(ans => state[i].possibleAnswers.push(ans))
             }
+        }
 
-
+    }
 
 
 })
 
 
-export const {updateTriviaRow, triviaSubmit} = triviaSlice.actions
+export const {updateQuestionElement, triviaSubmit} = triviaSlice.actions
 
 export default triviaSlice.reducer

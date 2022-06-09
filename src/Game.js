@@ -1,96 +1,92 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {updateTriviaRow} from "./redux/triviaSlice";
+import {updateQuestionElement} from "./redux/triviaSlice";
 import _ from "lodash";
 import Submit from "./Submit"
-import { decode } from "html-entities";
-import {nextPage,previousPage} from "./redux/pagesSlice";
-import {nextButton} from "./redux/gradeSlice";
-
+import {decode} from "html-entities";
+import {nextPage, previousPage} from "./redux/pagesSlice";
 
 
 export default function Game() {
 
-    const trivia = useSelector(state => state.trivia);
-    const pages = useSelector(state => state.pages.currentPage)
-    const submitButtons = useSelector(state => state.grade.submitButtons)
-     // const [currentPage, setCurrentPage] = useState(1);
-     const questionsPerPage = 5;
-    const indexOfLastQuestion = pages * questionsPerPage;
-    const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-    const page = trivia.slice(indexOfFirstQuestion,indexOfLastQuestion);
-     console.log(page)
+    const page_number = useSelector(state => state.pages.currentPage)
+    const page = useSelector(state => state.trivia.slice(0,5) );
+
 
     const dispatch = useDispatch();
 
 
-    const renderApp = () => trivia.slice(indexOfFirstQuestion,indexOfLastQuestion).map((questionElement, rowIndex) => {
-        let clonedRow = _.cloneDeep(questionElement)
-console.log("trivia" + trivia)
-        return (
+    const renderApp = () =>
+        page.map((questionElement, questionElement_Index) => {
+            let clonedQuestionElement = _.cloneDeep(questionElement)
 
-            <div key={rowIndex}>
+            return (
 
-                <h2 className="game-title">{decode(questionElement.question.text)}</h2>
+                <div key={questionElement_Index}>
 
-                <div>
+                    <h2 className="game-title">{decode(questionElement.question.text)}</h2>
 
-                    {questionElement.possibleAnswers.map((possibleAnswer, index) => {
+                    <div>
 
-                        return (
+                        {questionElement.possibleAnswers.map((possibleAnswer, index) => {
 
-                            <button key={index}
-                                    disabled={possibleAnswer.isDisabled}
-                                    onClick={() => {
-                                        if (possibleAnswer.isSelected === true) return;
+                            return (
 
-
-                                        clonedRow.possibleAnswers.forEach(clonedAnswer => {
+                                <button key={index}
+                                        disabled={possibleAnswer.isDisabled}
+                                        onClick={() => {
+                                            if (possibleAnswer.isSelected === true) return;
 
 
-                                            switch (clonedAnswer.id === possibleAnswer.id) {
-
-                                                case true:
-                                                    clonedAnswer.isSelected = true
-                                                    clonedAnswer.className = "answerSelected"
-                                                    break;
+                                            clonedQuestionElement.possibleAnswers.forEach(clonedAnswer => {
 
 
-                                                default:
-                                                    clonedAnswer.isSelected = false
-                                                    clonedAnswer.className = "answer"
-                                                    break;
+                                                switch (clonedAnswer.id === possibleAnswer.id) {
 
-                                            }
-                                        })
+                                                    case true:
+                                                        clonedAnswer.isSelected = true
+                                                        clonedAnswer.className = "answerSelected"
+                                                        break;
 
-                                        dispatch(updateTriviaRow({newRow: clonedRow, rowIndex}))
-                                    }}
-                                    className={possibleAnswer.className}
 
-                            >
+                                                    default:
+                                                        clonedAnswer.isSelected = false
+                                                        clonedAnswer.className = "answer"
+                                                        break;
 
-                                {decode(possibleAnswer.text)}
+                                                }
+                                            })
 
-                            </button>
+                                            dispatch(updateQuestionElement({
+                                                newQuestionElement: clonedQuestionElement,
+                                                oldQuestionElement_Index: questionElement_Index
+                                            }))
+                                        }}
+                                        className={possibleAnswer.className}
 
-                        )
-                    })}
+                                >
+
+                                    {decode(possibleAnswer.text)}
+
+                                </button>
+
+                            )
+                        })}
+
+                    </div>
+
+                    <hr className="hr-game"/>
 
                 </div>
-
-                <hr className="hr-game" />
-
-            </div>
-        )
-    })
+            )
+        })
 
 
     return (<div className="containerGame">
-        {renderApp(trivia)}
-        {Submit(trivia)}
-        <button hidden={pages===5} onClick={()=>dispatch(nextPage())}>Next Page</button>
-        <button hidden={pages===1} onClick={()=>dispatch(previousPage())}>previous Page</button>
+        {renderApp(page)}
+        {Submit(page)}
+        <button hidden={page_number === 5} onClick={() => dispatch(nextPage())}>Next Page</button>
+        <button hidden={page_number === 1} onClick={() => dispatch(previousPage())}>previous Page</button>
 
     </div>)
 }
