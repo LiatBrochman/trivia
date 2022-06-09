@@ -48,8 +48,9 @@ const triviaSlice = createSlice({
     initialState,
     reducers: {
         updateQuestionElement: (state, action) => {
-            state[action.payload.oldQuestionElement_Index] = action.payload.newQuestionElement
-
+            // console.log(action.payload)
+            // console.log(action.payload.question.number)
+            state[action.payload.question.number] = action.payload
         },
         triviaSubmit: (state, action) => {
             const pageClone = action.payload;
@@ -59,39 +60,6 @@ const triviaSlice = createSlice({
         },
     },
     extraReducers: {
-        // [getEachPage.fulfilled]:(state,action) => {
-        //
-        //     const amountOfQuestions = action.payload.length
-        //
-        //     for (let i = 0; i < amountOfQuestions; i++) {
-        //         state[i] = {}
-        //         state[i].question = {}
-        //         state[i].question.text = action.payload[i].question;
-        //         state[i].question.id = nanoid();
-        //         let answers = [{
-        //             text: action.payload[i]['correct_answer'],
-        //             id: nanoid(),
-        //             isSelected: false,
-        //             isCorrect: true,
-        //             isDisabled: false,
-        //             className: 'answer'
-        //         }]
-        //         action.payload[i]['incorrect_answers'].map(j => answers.push({
-        //             text: j,
-        //             id: nanoid(),
-        //             isSelected: false,
-        //             isCorrect: false,
-        //             isDisabled: false,
-        //             className: 'answer'
-        //         }))
-        //
-        //         answers = shuffle(answers)
-        //
-        //         state[i].possibleAnswers = []
-        //
-        //         answers.every(ans => state[i].possibleAnswers.push(ans))
-        //     }
-        // },
 
         [initPage.fulfilled]: (state, action) => {
 
@@ -103,6 +71,7 @@ const triviaSlice = createSlice({
                 state[i].question = {}
                 state[i].question.text = action.payload[i].question;
                 state[i].question.id = nanoid();
+                state[i].question.number=i
                 let answers = [{
                     text: action.payload[i]['correct_answer'],
                     id: nanoid(),

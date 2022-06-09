@@ -5,15 +5,16 @@ import {buttonClicked, increment} from "./redux/gradeSlice";
 import _ from "lodash";
 import {Link} from "react-router-dom";
 
-export default function Submit() {
+export default function Submit(page) {
     const grade = useSelector(state => state.grade.value)
     const page_number = useSelector(state => state.pages.currentPage)
-    const page = useSelector(state => state.trivia[page_number]);
+    // const page = useSelector(state => state.trivia[page_number]);
 
     const dispatch = useDispatch()
     let pageClone;
-
+    console.log("current page : ",page_number)
     return (
+
         <div className="containerButtons">
             <button className="game-button-submit"
                     onClick={() => {
@@ -52,7 +53,8 @@ export default function Submit() {
                             })
 
                             dispatch(triviaSubmit(pageClone))
-                        }
+                        }else{
+                            console.log("not Array")}
 
                     }}
 
