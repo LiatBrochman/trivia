@@ -6,22 +6,23 @@ import _ from "lodash";
 import {Link} from "react-router-dom";
 
 export default function Submit(page) {
+
     const grade = useSelector(state => state.grade.value)
     const page_number = useSelector(state => state.pages.currentPage)
-    // const page = useSelector(state => state.trivia[page_number]);
-
     const dispatch = useDispatch()
-    let pageClone;
-    console.log("current page : ",page_number)
+    // if ((page instanceof Array ) && (page[0].hasOwnProperty('question')) && (page[0].question))
+    // {console.log("first question of page: ", page_number, "is : ", page[0].question.text)}
+
+
     return (
 
         <div className="containerButtons">
             <button className="game-button-submit"
                     onClick={() => {
-                        pageClone = _.cloneDeep(page)
+                        let pageClone = _.cloneDeep(page)
                         if (pageClone instanceof Array) {
 
-                            pageClone.map((questionElement) => {
+                            pageClone.map(questionElement => {
 
                                 questionElement.possibleAnswers.map(possibleAnswer => {
                                     switch (possibleAnswer.isSelected + "|" + possibleAnswer.isCorrect) {
@@ -53,8 +54,9 @@ export default function Submit(page) {
                             })
 
                             dispatch(triviaSubmit(pageClone))
-                        }else{
-                            console.log("not Array")}
+                        } else {
+                            console.log("not Array")
+                        }
 
                     }}
 

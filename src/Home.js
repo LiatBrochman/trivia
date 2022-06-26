@@ -17,7 +17,7 @@ export default function Home(){
         <div  className="container">
          <h1 className="home-title">Quizzical</h1>
          <p className="home-description">Some description if needed</p>
-            <button className="home-button"><Link to="/game" className="link">Start quiz</Link></button>
+            <button className="home-button"><Link to="/pages" className="link">Start quiz</Link></button>
         </div>
     )
 

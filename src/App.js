@@ -5,7 +5,7 @@ import React, {Fragment} from 'react';
 import End from "./End";
 import Game from "./Game";
 import Home from "./Home"
-
+import Pages from "./Pages"
 
 function Users() {
     return null;
@@ -23,7 +23,7 @@ function App() {
 
                     <Route path="/end" element={<End/>}/>
 
-                    <Route path="/game" element={<Game/>}/>
+                    <Route path="/pages" element={<Pages/>}/>
 
                 </Routes>
             </Fragment>

@@ -50,11 +50,12 @@ const triviaSlice = createSlice({
         updateQuestionElement: (state, action) => {
             // console.log(action.payload)
             // console.log(action.payload.question.number)
+
             state[action.payload.question.number] = action.payload
         },
         triviaSubmit: (state, action) => {
-            const pageClone = action.payload;
-            pageClone.map((questionElement, index) => {
+
+            action.payload.map((questionElement, index) => {
                 state[index] = questionElement
             })
         },
