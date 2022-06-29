@@ -8,14 +8,14 @@ import {Provider} from 'react-redux'
 import {initPage} from "./redux/triviaSlice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
- store.dispatch(initPage())
+store.dispatch(initPage())
 
 root.render(
-<React.Fragment>
+    <React.Fragment>
         <Provider store={store}>
             <App/>
         </Provider>
-</React.Fragment>
+    </React.Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function

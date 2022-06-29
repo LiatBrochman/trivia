@@ -8,13 +8,14 @@
     width: 100vh;
 }
 
-.answerSelected{
+.answerSelected {
     background-color: #D6DBF5;
     border-radius: 7.94239px;
     color: #293264;
     margin: 5px;
 }
-.answer{
+
+.answer {
     border: 0.794239px solid #4D5B9E;
     border-radius: 7.94239px;
     color: #293264;
@@ -23,46 +24,44 @@
 
 }
 
-.answerCorrect{
+.answerCorrect {
     background-color: #94D7A2;
     border-radius: 7.94239px;
     color: #293264;
     margin: 5px;
 }
 
-.answerIncorrect{
+.answerIncorrect {
     background-color: #F8BCBC;
     border-radius: 7.94239px;
     color: #293264;
     margin: 5px;
- }
+}
 
-.answerDisabled{
+.answerDisabled {
     border: 0.771045px solid #4D5B9E;
     border-radius: 7.71045px;
     color: #293264;
     margin: 5px;
 }
 
-.game-title{
-     font-family: 'Karla', sans-serif;
-     font-style: normal;
-     font-weight: 700;
-     font-size: 16px;
-     line-height: 19px;
-     /* identical to box height */
+.game-title {
+    font-family: 'Karla', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
     margin: 5px;
 
 
-     color: #293264;
- }
+    color: #293264;
+}
 
-.game-button-submit{
-        display: flex; /* or inline-flex */
-        flex-direction: row;
-        justify-content: center;
-        width: 100vh;
-
+.game-button-submit {
+    display: flex; /* or inline-flex */
+    flex-direction: row;
+    justify-content: center;
     width: 120px;
     height: 35px;
     /*left: 179px;*/
@@ -85,7 +84,7 @@
 
 }
 
-.game-button-end-quiz{
+.game-button-end-quiz {
     /*position: absolute;*/
     width: 120px;
     height: 35px;
@@ -107,23 +106,24 @@
 
 }
 
-.link{
+.link {
     color: white;
     text-decoration: none;
 }
 
-.hr-game{
+.hr-game {
     width: 100vh;
     height: 0px;
 
     border: 0.794239px solid #DBDEF0;
 }
-.containerButtons{
+
+.containerButtons {
 
 }
 
 
-.end-quiz{
+.end-quiz {
     display: flex; /* or inline-flex */
     flex-direction: row;
     justify-content: flex-end;
@@ -131,6 +131,6 @@
     align-items: baseline;
 }
 
-.grade-sentence{
+.grade-sentence {
     margin-right: 10px;
 }

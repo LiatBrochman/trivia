@@ -74,7 +74,7 @@ const triviaSlice = createSlice({
                 state[i].question = {}
                 state[i].question.text = action.payload[i].question;
                 state[i].question.id = nanoid();
-                state[i].question.number=i
+                state[i].question.number = i
                 let answers = [{
                     text: action.payload[i]['correct_answer'],
                     id: nanoid(),

@@ -5,8 +5,8 @@ import pagesReducer from "./pagesSlice";
 
 export const store = configureStore({
     reducer: {
-        trivia:triviaReducer,
-        grade:gradeReducer,
+        trivia: triviaReducer,
+        grade: gradeReducer,
         pages: pagesReducer
     }
 })

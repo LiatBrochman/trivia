@@ -9,7 +9,7 @@ import {initPage} from "./redux/triviaSlice";
 
 export default function Pages() {
     let trying = store.getState().trivia
-    if(trying instanceof Array && trying.length === 0)  store.dispatch(initPage())// if index.js didnt work
+    if (trying instanceof Array && trying.length === 0) store.dispatch(initPage())// if index.js didnt work
     const questionsPerPage = 5;
     let page_number = useSelector(state => state.pages.currentPage)
     const indexOfLastQuestion = page_number * questionsPerPage;
@@ -19,8 +19,12 @@ export default function Pages() {
     return (
         <div>
             {Game(page)}
-         <button className="game-button-navigation" hidden={page_number === 1} onClick={() => store.dispatch(previousPage())}>previous Page</button>
-        <button  className="game-button-navigation" hidden={page_number === 5} onClick={() => store.dispatch(nextPage())} >Next Page</button>
+            <button className="game-button-navigation" hidden={page_number === 1}
+                    onClick={() => store.dispatch(previousPage())}>previous Page
+            </button>
+            <button className="game-button-navigation" hidden={page_number === 5}
+                    onClick={() => store.dispatch(nextPage())}>Next Page
+            </button>
 
         </div>
     );

@@ -29,11 +29,11 @@ const gradeSlice = createSlice({
             }
         },
         buttonClicked: (state) => {
-        state.submitButtons[0].isClicked = true
-            }
-        },
+            state.submitButtons[0].isClicked = true
+        }
+    },
 
 },)
 
-export const {increment,initialGrade,buttonClicked} = gradeSlice.actions
+export const {increment, initialGrade, buttonClicked} = gradeSlice.actions
 export default gradeSlice.reducer

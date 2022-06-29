@@ -7,7 +7,7 @@ import {store} from "./redux/store";
 
 export default function Game(page) {
 
-    const buttons = [1,2,3,4,5];
+    const buttons = [1, 2, 3, 4, 5];
     const renderApp = () => page instanceof Array && page[1] && page.map(questionElement => {
 
         let clonedQuestionElement = _.cloneDeep(questionElement)
@@ -33,7 +33,10 @@ export default function Game(page) {
                                         c_possibleAnswer.isSelected = true;
                                         c_possibleAnswer.className = "answerSelected";
                                         let others = clonedQuestionElement.possibleAnswers.filter(i => i.id !== c_possibleAnswer.id)
-                                        others.forEach(i => {i.isSelected = false; i.className = "answer";})
+                                        others.forEach(i => {
+                                            i.isSelected = false;
+                                            i.className = "answer";
+                                        })
                                         store.dispatch(updateQuestionElement(clonedQuestionElement));
                                     }
 
