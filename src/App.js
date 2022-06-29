@@ -6,6 +6,7 @@ import End from "./End";
 import Game from "./Game";
 import Home from "./Home"
 import Pages from "./Pages"
+import {useSelector} from "react-redux";
 
 function Users() {
     return null;
@@ -14,6 +15,7 @@ function Users() {
 
 
 function App() {
+    let page_number = useSelector(state => state.pages.currentPage)
     return (
 
         <BrowserRouter>

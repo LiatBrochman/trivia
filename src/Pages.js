@@ -1,21 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import './Pages.css';
+import React from 'react';
+import {useSelector} from "react-redux";
 import Game from "./Game";
 import {nextPage, previousPage} from "./redux/pagesSlice";
 
+import {store} from "./redux/store";
+import {initPage} from "./redux/triviaSlice";
+
 export default function Pages() {
+    let trying = store.getState().trivia
+    if(trying instanceof Array && trying.length === 0)  store.dispatch(initPage())// if index.js didnt work
     const questionsPerPage = 5;
     let page_number = useSelector(state => state.pages.currentPage)
     const indexOfLastQuestion = page_number * questionsPerPage;
     const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-    const dispatch = useDispatch();
-    let page = useSelector(state => state.trivia.slice(indexOfFirstQuestion, indexOfLastQuestion))
+    let page = useSelector(state => state.trivia.slice(indexOfFirstQuestion, indexOfLastQuestion))//cutting irrelevant questions from the page
 
     return (
         <div>
-            {page instanceof Array && page[0] && page[1] && Game(page)}
-            <button hidden={page_number === 5} onClick={() => dispatch(nextPage())}>Next Page</button>
-            <button hidden={page_number === 1} onClick={() => dispatch(previousPage())}>previous Page</button>
+            {Game(page)}
+         <button className="game-button-navigation" hidden={page_number === 1} onClick={() => store.dispatch(previousPage())}>previous Page</button>
+        <button  className="game-button-navigation" hidden={page_number === 5} onClick={() => store.dispatch(nextPage())} >Next Page</button>
+
         </div>
     );
 }

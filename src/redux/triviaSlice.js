@@ -55,9 +55,11 @@ const triviaSlice = createSlice({
         },
         triviaSubmit: (state, action) => {
 
-            action.payload.map((questionElement, index) => {
-                state[index] = questionElement
+            console.log("action payload ", action.payload)
+            action.payload.map(questionElement => {
+                state[questionElement.question.number] = questionElement
             })
+
         },
     },
     extraReducers: {

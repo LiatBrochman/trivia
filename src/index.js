@@ -11,11 +11,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
  store.dispatch(initPage())
 
 root.render(
-
+<React.Fragment>
         <Provider store={store}>
             <App/>
         </Provider>
-
+</React.Fragment>
 );
 
 // If you want to start measuring performance in your app, pass a function
