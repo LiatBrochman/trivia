@@ -50,8 +50,8 @@ const triviaSlice = createSlice({
         updateQuestionElement: (state, action) => {
             // console.log(action.payload)
             // console.log(action.payload.question.number)
-
             state[action.payload.question.number] = action.payload
+
         },
         triviaSubmit: (state, action) => {
 
@@ -95,7 +95,7 @@ const triviaSlice = createSlice({
                 answers = shuffle(answers)
 
                 state[i].possibleAnswers = []
-
+                state[i].rowIsSelected= false;
                 answers.every(ans => state[i].possibleAnswers.push(ans))
             }
         }

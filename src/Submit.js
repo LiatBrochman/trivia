@@ -2,19 +2,24 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {triviaSubmit} from "./redux/triviaSlice";
 import {increment} from "./redux/gradeSlice";
+import {disableSubmit} from "./redux/pagesSlice"
 import _ from "lodash";
 import {store} from "./redux/store";
 import {Link} from "react-router-dom";
+
 
 export default function Submit(page) {
 
     const grade = useSelector(state => state.grade.value)
     const page_number = useSelector(state => state.pages.currentPage)
+    const isDisabled = useSelector(state => !state.pages.allowedSubmit_byPageNum[page_number])
+
+    if (isDisabled === false) console.log("you are allowed to submit now!")
 
     return (
-
         <div className="containerButtons">
             <button className="game-button-submit"
+                    disabled={isDisabled}
                     onClick={() => {
                         let pageClone = _.cloneDeep(page)
                         console.log(pageClone)
@@ -52,7 +57,7 @@ export default function Submit(page) {
                             })
 
                             store.dispatch(triviaSubmit(pageClone))
-                            // console.log(page_number)
+                            store.dispatch(disableSubmit())
                         } else {
                             console.log("not Array")
                         }

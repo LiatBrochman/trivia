@@ -1,5 +1,6 @@
 import React from 'react';
 import {updateQuestionElement} from "./redux/triviaSlice";
+import {firstTimeSelecting} from "./redux/pagesSlice"
 import _ from "lodash";
 import Submit from "./Submit"
 import {decode} from "html-entities";
@@ -37,6 +38,8 @@ export default function Game(page) {
                                             i.isSelected = false;
                                             i.className = "answer";
                                         })
+                                        if(clonedQuestionElement.rowIsSelected===false) store.dispatch(firstTimeSelecting(clonedQuestionElement.question.number))
+                                        clonedQuestionElement.rowIsSelected = true;
                                         store.dispatch(updateQuestionElement(clonedQuestionElement));
                                     }
 
