@@ -8,7 +8,6 @@ import {store} from "./redux/store";
 
 export default function Game(page) {
 
-    const buttons = [1, 2, 3, 4, 5];
     const renderApp = () => page instanceof Array && page[1] && page.map(questionElement => {
 
         let clonedQuestionElement = _.cloneDeep(questionElement)

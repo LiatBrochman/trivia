@@ -2,22 +2,21 @@ import React from 'react';
 import {useSelector} from "react-redux";
 import {triviaSubmit} from "./redux/triviaSlice";
 import {increment} from "./redux/gradeSlice";
-import {disableSubmit} from "./redux/pagesSlice"
+import {disableEnd, disableSubmit} from "./redux/pagesSlice"
 import _ from "lodash";
 import {store} from "./redux/store";
-import {Link} from "react-router-dom";
+import EndButton from "./EndButton";
 
 
 export default function Submit(page) {
 
-    const grade = useSelector(state => state.grade.value)
     const page_number = useSelector(state => state.pages.currentPage)
     const isDisabled = useSelector(state => !state.pages.allowedSubmit_byPageNum[page_number])
 
     if (isDisabled === false) console.log("you are allowed to submit now!")
 
     return (
-        <div className="containerButtons">
+            <>
             <button className="game-button-submit"
                     disabled={isDisabled}
                     onClick={() => {
@@ -58,6 +57,8 @@ export default function Submit(page) {
 
                             store.dispatch(triviaSubmit(pageClone))
                             store.dispatch(disableSubmit())
+                            store.dispatch(disableEnd())
+
                         } else {
                             console.log("not Array")
                         }
@@ -67,17 +68,8 @@ export default function Submit(page) {
             >Submit
             </button>
 
-
-            <div className="end-quiz">
-                <span className="grade-sentence">{`You scored ${grade}/25 correct answers`}</span>
-                {/*<span className="grade-sentence">{page_number === 5 && `You scored ${grade}/25 correct answers`}</span>*/}
-                <button className="game-button-end-quiz" hidden={page_number !== 5}>
-                    <Link to="/end" className="link">End quiz</Link>
-                </button>
-            </div>
-
-
-        </div>
+                <EndButton/>
+        </>
 
     )
 }

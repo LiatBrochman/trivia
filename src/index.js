@@ -8,7 +8,9 @@ import {Provider} from 'react-redux'
 import {initPage} from "./redux/triviaSlice";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-store.dispatch(initPage())
+export var amountOfQuestions=5;
+export var lastPage=1;
+store.dispatch(initPage({amountOfQuestions}))
 
 root.render(
     <React.Fragment>
