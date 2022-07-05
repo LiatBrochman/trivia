@@ -7,9 +7,9 @@ import {store} from './redux/store'
 import {Provider} from 'react-redux'
 import {initPage} from "./redux/triviaSlice";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-export var amountOfQuestions=5;
-export var lastPage=1;
+const root = ReactDOM.createRoot(document.getElementById('root'))
+export var amountOfQuestions=25
+export var lastPage=5
 store.dispatch(initPage({amountOfQuestions}))
 
 root.render(
@@ -23,4 +23,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

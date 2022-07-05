@@ -6,6 +6,9 @@ import '../Game.css';
 
 const DEFAULT_AMOUNT_OF_QUESTIONS = 25;
 export const initPage = createAsyncThunk('trivia/initPage', async (data = {amountOfQuestions: DEFAULT_AMOUNT_OF_QUESTIONS}, {rejectWithValue}) => {
+
+
+
     try {
         return axios(`https://opentdb.com/api.php?amount=${data.amountOfQuestions}`).then(res => res.data.results)
 
