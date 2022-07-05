@@ -1,5 +1,5 @@
 {
-  "homepage": "http://liatbrochman.github.io/trivia/",
+  "homepage": "http://liatbrochman.github.io/trivia",
   "name": "trivia",
   "version": "0.1.0",
   "private": true,
@@ -24,7 +24,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b deploy -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
