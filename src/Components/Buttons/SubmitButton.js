@@ -1,14 +1,14 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {triviaSubmit} from "./redux/triviaSlice";
-import {increment} from "./redux/gradeSlice";
-import {disableEnd, disableSubmit} from "./redux/pagesSlice"
+import {triviaSubmit} from "../../redux/Slices/triviaSlice";
+import {increment} from "../../redux/Slices/gradeSlice";
+import {disableEnd, disableSubmit} from "../../redux/Slices/pagesSlice"
 import _ from "lodash";
-import {store} from "./redux/store";
+import {store} from "../../redux/Store/store";
 import EndButton from "./EndButton";
+import '../../CSS/ButtonsCSS/SubmitButton.css';
 
-
-export default function Submit(page) {
+export default function SubmitButton(page) {
 
     const page_number = useSelector(state => state.pages.currentPage)
     const isDisabled = useSelector(state => !state.pages.allowedSubmit_byPageNum[page_number])
@@ -17,7 +17,7 @@ export default function Submit(page) {
 
     return (
             <>
-            <button className="game-button-submit"
+            <button className="button-submit"
                     disabled={isDisabled}
                     onClick={() => {
                         let pageClone = _.cloneDeep(page)

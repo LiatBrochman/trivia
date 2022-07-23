@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
-import triviaReducer from "./triviaSlice";
-import gradeReducer from "./gradeSlice";
-import pagesReducer from "./pagesSlice";
+import triviaReducer from "../Slices/triviaSlice";
+import gradeReducer from "../Slices/gradeSlice";
+import pagesReducer from "../Slices/pagesSlice";
 
 export const store = configureStore({
     reducer: {

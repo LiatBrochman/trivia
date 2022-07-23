@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import _ from "lodash";
-import {lastPage} from "../index";
+import {lastPage} from "../../index";
 
 const initialState = {
     currentPage: 1,

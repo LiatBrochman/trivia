@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {nanoid} from 'nanoid'
 import axios from "axios";
 import React from "react";
-import '../Game.css';
+import '../../CSS/PagesCSS/Game.css';
 
 const DEFAULT_AMOUNT_OF_QUESTIONS = 25;
 export const initPage = createAsyncThunk('trivia/initPage', async (data = {amountOfQuestions: DEFAULT_AMOUNT_OF_QUESTIONS}, {rejectWithValue}) => {

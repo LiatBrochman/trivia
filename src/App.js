@@ -1,10 +1,10 @@
-import './App.css';
+
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import React, {Fragment, useEffect} from 'react';
 
-import End from "./End";
-import Home from "./Home"
-import Pages from "./Pages"
+import End from "./Components/Pages/End";
+import Home from "./Components/Pages/Home"
+import Pages from "./Components/Pages/Pages"
 
 
 function App() {
@@ -18,6 +18,8 @@ function App() {
 
 
     // const navigate = useNavigate();
+
+    // i dont understand the function here
     useEffect(() => {
         window.onbeforeunload = (e) => {
             if (e) {
@@ -34,6 +36,8 @@ function App() {
         <BrowserRouter>
             <Fragment>
                 <Routes>
+                     {/*why have two routes home components?*/}
+                    <Route path="/trivia" element={<Home/>}/>
                     <Route path="/" element={<Home/>}/>
 
                     <Route path="/end" element={<End/>}/>

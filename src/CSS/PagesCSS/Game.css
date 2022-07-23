@@ -6,6 +6,8 @@
     height: calc(100vh - 100px);
     padding-left: 100px;
     width: 100vh;
+
+
 }
 
 .answerSelected {
@@ -58,53 +60,7 @@
     color: #293264;
 }
 
-.game-button-submit {
-    display: flex; /* or inline-flex */
-    flex-direction: row;
-    justify-content: center;
-    width: 120px;
-    height: 35px;
-    /*left: 179px;*/
-    /*top: 314px;*/
 
-    background: #4D5B9E;
-    border-radius: 10px;
-
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    /*text-align: center;*/
-
-    color: #F5F7FB;
-    align-items: center;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.game-button-end-quiz {
-    /*position: absolute;*/
-    width: 120px;
-    height: 35px;
-    /*left: 179px;*/
-    /*top: 314px;*/
-
-    background: #4D5B9E;
-    border-radius: 10px;
-
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    /*text-align: center;*/
-
-    color: #F5F7FB;
-    align-items: self-end;
-
-}
 
 .link {
     color: white;
@@ -114,23 +70,8 @@
 .hr-game {
     width: 100vh;
     height: 0px;
-
     border: 0.794239px solid #DBDEF0;
 }
 
-.containerButtons {
-
-}
 
 
-.end-quiz {
-    display: flex; /* or inline-flex */
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100vh;
-    align-items: baseline;
-}
-
-.grade-sentence {
-    margin-right: 10px;
-}

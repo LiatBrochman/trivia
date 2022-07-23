@@ -1,10 +1,11 @@
 import React from 'react';
-import {updateQuestionElement} from "./redux/triviaSlice";
-import {firstTimeSelecting} from "./redux/pagesSlice"
+import {updateQuestionElement} from "../../redux/Slices/triviaSlice";
+import {firstTimeSelecting} from "../../redux/Slices/pagesSlice"
 import _ from "lodash";
-import Submit from "./Submit"
+import SubmitButton from "../Buttons/SubmitButton"
 import {decode} from "html-entities";
-import {store} from "./redux/store";
+import {store} from "../../redux/Store/store";
+import '../../CSS/PagesCSS/Game.css';
 
 export default function Game(page) {
 
@@ -64,7 +65,7 @@ export default function Game(page) {
 
     return (<div className="containerGame">
         {renderApp(page)}
-        {Submit(page)}
+        {SubmitButton(page)}
 
 
     </div>)

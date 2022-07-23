@@ -2,13 +2,13 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     value: 0,
-    submitButtons: [
-        {id: 0, isClicked: false},
-        {id: 1, isClicked: false},
-        {id: 2, isClicked: false},
-        {id: 3, isClicked: false},
-        {id: 4, isClicked: false},
-    ]
+    // submitButtons: [
+    //     {id: 0, isClicked: false},
+    //     {id: 1, isClicked: false},
+    //     {id: 2, isClicked: false},
+    //     {id: 3, isClicked: false},
+    //     {id: 4, isClicked: false},
+    // ]
 }
 const gradeSlice = createSlice({
     name: 'grade',
@@ -23,14 +23,14 @@ const gradeSlice = createSlice({
         // },
         initialGrade: (state) => {
             state.value = 0;
-            for (let i = 0; i < 5; i++) {
-                state.submitButtons[i].id = i;
-                state.submitButtons[i].isClicked = false;
-            }
+            // for (let i = 0; i < 5; i++) {
+            //     state.submitButtons[i].id = i;
+            //     state.submitButtons[i].isClicked = false;
+            // }
         },
-        buttonClicked: (state) => {
-            state.submitButtons[0].isClicked = true
-        }
+        // buttonClicked: (state) => {
+        //     state.submitButtons[0].isClicked = true
+        // }
     },
 
 },)
