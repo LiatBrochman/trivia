@@ -1,50 +1,61 @@
 .containerGame {
     display: flex; /* or inline-flex */
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: self-start;
-    height: calc(100vh - 100px);
-    padding-left: 100px;
-    width: 100vh;
+    align-items: center;
+    text-align: center;
+    wrap: wrap-content;
+    /*height: calc(100vh - 100px);*/
+    /*padding-left: 100px;*/
+    /*width: 100vh;*/
+
 
 
 }
 
 .answerSelected {
-    background-color: #D6DBF5;
+    background-color: #7BC4C4;
+    border: 3px solid #368C87;
     border-radius: 7.94239px;
-    color: #293264;
+    color: white;
     margin: 5px;
+    width: 50%;
 }
 
 .answer {
-    border: 0.794239px solid #4D5B9E;
+    border: 3px solid #7BC4C4;
     border-radius: 7.94239px;
-    color: #293264;
+    color: white;
     margin: 5px;
     background-color: inherit;
-
+    background-color:#7BC4C4;
+    width: 50%;
 }
 
 .answerCorrect {
-    background-color: #94D7A2;
+    border: 3px solid #94D7A2;
     border-radius: 7.94239px;
-    color: #293264;
+    color: #595959;
     margin: 5px;
+    width: 50%;
 }
 
 .answerIncorrect {
-    background-color: #F8BCBC;
+    border: 3px solid #F8BCBC;
     border-radius: 7.94239px;
-    color: #293264;
+    color: #595959;
     margin: 5px;
+    width: 50%;
+
 }
 
 .answerDisabled {
-    border: 0.771045px solid #4D5B9E;
+    border: 0.771045px solid #75C2C3;
     border-radius: 7.71045px;
-    color: #293264;
+    color: #595959;
     margin: 5px;
+    width: 50%;
 }
 
 .game-title {
@@ -57,7 +68,8 @@
     margin: 5px;
 
 
-    color: #293264;
+
+    color:#595959;
 }
 
 
@@ -73,5 +85,18 @@
     border: 0.794239px solid #DBDEF0;
 }
 
+.questionElement{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    width:60vh;
+    height:30vh;
+
+    margin-bottom: 20px;
+    margin-right: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
 

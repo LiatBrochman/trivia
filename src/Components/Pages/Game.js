@@ -15,7 +15,7 @@ export default function Game(page) {
 
         return (
 
-            <div key={questionElement.question.number}>
+            <div className="questionElement" key={questionElement.question.number}>
 
                 <h2 className="game-title">{decode(questionElement.question.text)}</h2>
 
@@ -24,6 +24,7 @@ export default function Game(page) {
                     {clonedQuestionElement.possibleAnswers.map(c_possibleAnswer => {
 
                         return (
+                            <div>
                             <button key={c_possibleAnswer.id}
                                     disabled={c_possibleAnswer.isDisabled}
 
@@ -50,13 +51,14 @@ export default function Game(page) {
                                 {decode(c_possibleAnswer.text)}
 
                             </button>
+                            </div>
 
                         )
                     })}
 
                 </div>
 
-                <hr className="hr-game"/>
+
 
             </div>
         )
@@ -65,7 +67,7 @@ export default function Game(page) {
 
     return (<div className="containerGame">
         {renderApp(page)}
-        {SubmitButton(page)}
+
 
 
     </div>)

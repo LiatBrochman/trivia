@@ -16,7 +16,7 @@ export default function SubmitButton(page) {
     if (isDisabled === false) console.log("you are allowed to submit now!")
 
     return (
-            <>
+<>
             <button className="button-submit"
                     disabled={isDisabled}
                     onClick={() => {
@@ -43,7 +43,7 @@ export default function SubmitButton(page) {
                                             break;
 
                                         case false + "|" + true:
-                                            possibleAnswer.className = "answerCorrect"
+                                            possibleAnswer.className = "answerDisabled"
                                             break;
 
                                         default:
@@ -67,9 +67,9 @@ export default function SubmitButton(page) {
 
             >Submit
             </button>
-
-                <EndButton/>
+        <EndButton/>
         </>
+
 
     )
 }

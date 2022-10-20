@@ -5,6 +5,7 @@ import Game from "./Game";
 import {nextPage, previousPage} from "../../redux/Slices/pagesSlice";
 import {store} from "../../redux/Store/store";
 import {lastPage} from "../../index"
+import SubmitButton from "../Buttons/SubmitButton";
 
 export default function Pages() {
 
@@ -15,12 +16,15 @@ export default function Pages() {
     return (
         <div className="pages-container">
             {Game(page)}
+            {SubmitButton(page)}
+            <div className="navigation-buttons">
             <button className="game-button-navigation" hidden={pages.currentPage === 1}
                     onClick={() => store.dispatch(previousPage())}>previous Page
             </button>
             <button className="game-button-navigation" hidden={pages.currentPage === lastPage}
                     onClick={() => store.dispatch(nextPage())}>Next Page
             </button>
+            </div>
 <br/>
         </div>
     );

@@ -23,7 +23,7 @@
     line-height: 37px;
     /*text-align: center;*/
 
-    color: #293264;
+    color: #7BC4C4;
 
 
 }
@@ -42,7 +42,7 @@
     line-height: 19px;
     /*text-align: center;*/
 
-    color: #293264;
+    color: #7BC4C4;
 
 }
 
@@ -54,7 +54,7 @@
     /*left: 179px;*/
     /*top: 314px;*/
 
-    background: #4D5B9E;
+    background: lightpink;
     border-radius: 15px;
 
     font-family: 'Inter', sans-serif;
@@ -64,11 +64,12 @@
     line-height: 19px;
     /*text-align: center;*/
 
-    color: #F5F7FB;
-
+    /*color: lightpink;*/
+border: 2px solid lightpink;
 }
 
 .home-link {
-    color: white;
+    color:  white;
+    text-shadow: 1px 1px #595959;
     text-decoration: none;
 }

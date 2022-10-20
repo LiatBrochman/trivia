@@ -12,10 +12,12 @@ export default function Home() {
     dispatch(initialGrade())
     dispatch(startPage())
     return (
+        <div>
         <div className="home-container">
             <h1 className="home-title">Quizzical</h1>
             <p className="home-description">Press the button to start the quiz</p>
             <button className="home-button"><Link to="/pages" className="home-link">Start quiz</Link></button>
+        </div>
         </div>
     )
 

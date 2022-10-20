@@ -6,7 +6,7 @@
     /*left: 179px;*/
     /*top: 314px;*/
 
-    background: #4D5B9E;
+    background: #7BC4C4;
     border-radius: 10px;
 
     font-family: 'Inter', sans-serif;
@@ -17,19 +17,24 @@
     /*text-align: center;*/
 
     color: #F5F7FB;
-    align-items: self-end;
+    align-items: center;
 
 }
 
 .end-quiz {
     display: flex; /* or inline-flex */
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     width: 100vh;
-    align-items: baseline;
+    align-items: center;
 }
 
 .grade-sentence {
     font-family: 'Karla', sans-serif;
-    margin-right: 10px;
+    margin: 10px;
+    background-color: white;
+    color: #595959;
+    padding:5px;
+
+
 }
