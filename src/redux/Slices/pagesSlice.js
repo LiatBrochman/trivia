@@ -11,8 +11,20 @@ const initialState = {
     currentSelectedAnswers: [],//question that are selected [0,1,2,3,4,5...]
     allowedSubmit_byPageNum: ["emptyPage", false, false, false, false, false], //pages that allow submit (by index)
     finishedPages: [],//pages that have been submitted [0,1,2,3,4,5...]
-    allowedEnd: false
-
+    allowedEnd: false,
+    force:{
+        allowEnd: true,
+        allowSubmit: true
+    }
+}
+const startForcingStuff=state=>{
+   if( state.force.allowSubmit) {
+      state.allowedSubmit_byPageNum = state.allowedSubmit_byPageNum.map((value,index)=> index===0 ? value : true )
+   }
+    if( state.force.allowEnd){
+        state.allowedEnd=true
+    }
+    return state
 }
 const pagesSlice = createSlice({
     name: 'pages',
@@ -32,9 +44,13 @@ const pagesSlice = createSlice({
             state.currentPage = 1
             state.indexOfLastQuestion = (state.currentPage * state.questionsPerPage) - 1
             state.indexOfFirstQuestion = state.indexOfLastQuestion - state.questionsPerPage + 1
+            startForcingStuff(state)
         },
         firstTimeSelecting: (state, action) => {
             state.currentSelectedAnswers.push(action.payload)
+
+            if(state.force.allowSubmit) return
+            
             console.log("current question number:", action.payload)
             console.log("  const mustBeSelected = _.range(", state.indexOfFirstQuestion, ", ", state.indexOfLastQuestion + 1, ") //_.range(1, 5) ===> [1, 2, 3, 4]")
 
@@ -57,6 +73,7 @@ const pagesSlice = createSlice({
             state.finishedPages.push(state.currentPage)
         },
         disableEnd: (state) => {
+            if(state.force.allowEnd) return
 
             const arrayOfPages = _.range(1, lastPage + 1) // example: [1,2,3..]
 
@@ -65,7 +82,6 @@ const pagesSlice = createSlice({
                 state.allowedEnd = true
                 :
                 state.allowedEnd = false
-
 
         }
 
